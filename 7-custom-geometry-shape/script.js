@@ -1,22 +1,6 @@
 let scene, renderer, camera, shape;
 
-let makeshape = () => {
-  //   const points = [];
-  //   points.push(new THREE.Vector3(6, 0, 0));
-  //   points.push(new THREE.Vector3(0, 6, 0));
-  //   points.push(new THREE.Vector3(0, 0, 6));
-  //   points.push(new THREE.Vector3(1, 2, -2));
-
-  //   let geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-  //   let material = new THREE.MeshBasicMaterial({
-  //     color: 0xffffff,
-  //     side: THREE.DoubleSide,
-  //   });
-
-  //   shape = new THREE.Mesh(geometry, material);
-  //   scene.add(shape);
-
+makeshape = () => {
   const material = new THREE.MeshBasicMaterial({
     color: 0xffffff,
     side: THREE.DoubleSide,
@@ -69,9 +53,10 @@ let init = () => {
   document.body.appendChild(renderer.domElement);
 };
 let mainLoop = () => {
+  let val = shape.geometry.attributes.position.getY(1);
+  shape.geometry.attributes.position.setY(1, val - 0.002);
+  shape.geometry.attributes.position.needsUpdate = true;
   shape.rotation.x += 0.01;
-  shape.rotation.y += 0.01;
-  shape.rotation.z += 0.01;
   renderer.render(scene, camera);
 
   requestAnimationFrame(mainLoop);
