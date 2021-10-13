@@ -1,3 +1,5 @@
+import * as THREE from "https://cdn.skypack.dev/three@0.133.1";
+
 let scene, renderer, camera;
 
 let init = () => {
