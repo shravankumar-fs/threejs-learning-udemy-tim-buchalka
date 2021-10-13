@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+canvas {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
