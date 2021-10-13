@@ -1,19 +1,23 @@
-let scene, renderer, camera, cube1, cube2, plane;
+import * as THREE from "https://cdn.skypack.dev/three@0.133.1";
+import { VertexNormalsHelper } from "https://cdn.skypack.dev/three@0.133.1/examples/jsm/helpers/VertexNormalsHelper";
+
+let scene, renderer, camera, cube1, cube2, plane, helper;
 let ADD = 0.02;
 
 let createGeometry = () => {
   //cube 1
-  let geometry = new THREE.BoxGeometry(10, 10, 10);
+  let geometry = new THREE.BoxGeometry(5, 5, 5);
   let material = new THREE.MeshBasicMaterial({
     color: 0xc9b92b,
-    transparent: true,
-    opacity: 0.9,
     wireframe: true,
   });
 
   cube1 = new THREE.Mesh(geometry, material);
   cube1.position.z = -6;
   cube1.position.y = -5;
+  helper = new VertexNormalsHelper(cube1, 5, 0x000000, 300);
+
+  scene.add(helper);
   //cube 2
   geometry = new THREE.BoxGeometry(5, 5, 5);
   material = new THREE.MeshBasicMaterial({
@@ -51,7 +55,7 @@ let init = () => {
     1,
     1000
   );
-  camera.position.z = 30;
+  camera.position.z = 20;
   //create object
   createGeometry();
   //create renderer
@@ -66,7 +70,8 @@ let mainLoop = () => {
   // cube1.rotation.x += ADD;
   // console.log(cube1.position);
   // if (cube1.position.x > 6 || cube1.position.x < -6) ADD *= -1;
-
+  cube1.rotation.x += ADD;
+  helper.update();
   renderer.render(scene, camera);
 
   requestAnimationFrame(mainLoop);
