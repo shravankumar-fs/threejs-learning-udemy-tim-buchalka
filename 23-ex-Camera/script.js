@@ -31,7 +31,7 @@ let createGeometry = () => {
   });
   sphere = new THREE.Mesh(geometry, material);
 
-  sphere.position.y = 100;
+  sphere.position.y = 20;
 
   scene.add(sphere);
 };
@@ -47,13 +47,13 @@ let init = () => {
     1,
     1000
   );
-  camera.position.z = 70;
+  camera.position.set(0, 0, 70);
   let light = new THREE.DirectionalLight(0xffffff, 1);
   scene.add(light);
   let light2 = new THREE.DirectionalLight(0xffffff, 1);
   scene.add(light2);
   light2.position.set(60, -400, 80);
-
+  // scene.add(new THREE.AxesHelper(40));
   //create object
   createGeometry();
   //create renderer
@@ -78,7 +78,7 @@ setInterval(() => {
   sphere.position.y = yMovement;
   sphere.position.z = zMovement;
   camera.position.y = yMovement;
-  camera.position.z = zMovement + 5;
+  camera.position.z = zMovement + 10;
 
   theta += ADD;
 }, 5);
